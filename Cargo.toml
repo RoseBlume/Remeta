@@ -3,6 +3,10 @@ name = "remeta"
 version = "1.0.0"
 edition = "2024"
 readme = "README.md"
+license = "MIT"
+repository = "https://github.com/RoseBlume/Remeta"
+homepage = "https://github.com/RoseBlume/Remeta"
+description = "A Rust crate for extracting metadata from various audio, video, and image formats."
 
 
 
