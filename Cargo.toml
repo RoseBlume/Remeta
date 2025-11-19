@@ -1,6 +1,6 @@
 [package]
 name = "remeta"
-version = "1.0.3"
+version = "1.0.4"
 edition = "2024"
 readme = "README.md"
 license = "MIT"
@@ -11,7 +11,7 @@ keywords = ["meta", "metadata"]
 categories = ["multimedia::encoding", "parsing"]
 
 [features]
-default = ["music", "videos", "images"]
+default = ["png", "jpg", "gif", "webp", "ico", "tiff", "bmp", "heif", "avif", "svg", "pdf", "eps", "flac", "id3v1", "id3v2", "m4a", "wav", "mp4", "mkv", "avi"]
 music = ["flac", "id3v1", "id3v2", "m4a", "wav"]
 videos = ["mp4", "mkv", "avi"]
 images = ["png", "jpg", "gif", "webp", "ico", "tiff", "bmp", "heif", "avif", "svg", "pdf", "eps"]
