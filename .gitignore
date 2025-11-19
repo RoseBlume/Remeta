@@ -2,3 +2,4 @@
 tests/*.mp4
 tests/*.flac
 tests/*.png
+Cargo.lock
