@@ -1,31 +1,8 @@
-#[cfg(feature = "wav-duration")]
+#[cfg(feature = "wav")]
 pub mod wav;
-#[cfg(feature = "flac-duration")]
+#[cfg(feature = "flac")]
 pub mod flac;
-#[cfg(feature = "mp3-duration")]
+#[cfg(any(feature = "id3v1", feature = "id3v2"))]
 pub mod mp3;
-#[cfg(feature = "m4a-duration")]
+#[cfg(feature = "m4a")]
 pub mod m4a;
-
-// #[cfg(feature = "wav-duration")]
-// mod wav;
-// #[cfg(feature = "flac-duration")]
-// mod flac;
-// #[cfg(feature = "mp3-duration")]
-// mod mp3;
-// #[cfg(feature = "m4a-duration")]
-// mod m4a;
-
-
-
-
-// #[cfg(feature = "wav-duration")]
-// pub use wav;
-// #[cfg(feature = "flac-duration")]
-// pub use flac;
-// #[cfg(feature = "mp3-duration")]
-// pub use mp3;
-// #[cfg(feature = "m4a-duration")]
-// pub use m4a;
-
-

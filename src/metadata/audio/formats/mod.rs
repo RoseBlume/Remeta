@@ -14,7 +14,7 @@ mod mp3v2;
 #[cfg(feature = "m4a")]
 mod m4a;
 
-#[cfg(any(feature = "wav-duration", feature = "mp3-duration", feature = "flac-duration", feature = "m4a-duration"))]
+#[cfg(any(feature = "wav", feature = "id3v1", feature = "id3v2", feature = "flac", feature = "m4a"))]
 mod duration;
 
 pub fn detect_and_parse(header: &[u8], f: &mut File) -> io::Result<SongMetadata> {
@@ -22,28 +22,19 @@ pub fn detect_and_parse(header: &[u8], f: &mut File) -> io::Result<SongMetadata>
         #[cfg(feature = "wav")]
         b"RIFF" if &header[8..12] == b"WAVE" => {
             let mut m = wav::parse(f)?;
-            #[cfg(feature = "wav-duration")]
-            {
-                m.duration_ms = duration::wav::compute(f).ok();
-            }
+            m.duration_ms = duration::wav::compute(f).ok();
             m
         }
         #[cfg(feature = "flac")]
         b"fLaC" => {
             let mut m = flac::parse(f)?;
-            #[cfg(feature = "flac-duration")]
-            {
-                m.duration_ms = duration::flac::compute(f).ok();
-            }
+            m.duration_ms = duration::flac::compute(f).ok();
             m
         }
         #[cfg(feature = "id3v2")]
         b"ID3\x03" | b"ID3\x04" => {
             let mut m = mp3v2::parse(f)?;
-            #[cfg(feature = "mp3-duration")]
-            {
-                m.duration_ms = duration::mp3::compute(f).ok();
-            }
+            m.duration_ms = duration::mp3::compute(f).ok();
             m
         }
         _ => {
@@ -57,11 +48,11 @@ pub fn detect_and_parse(header: &[u8], f: &mut File) -> io::Result<SongMetadata>
                 m = m4;
             }
             // durations
-            #[cfg(feature = "m4a-duration")]
+            #[cfg(feature = "m4a")]
             {
                 m.duration_ms = duration::m4a::compute(f).ok();
             }
-            #[cfg(feature = "mp3-duration")]
+            #[cfg(any(feature = "id3v1", feature = "id3v2"))]
             {
                 m.duration_ms = m.duration_ms.or_else(|| duration::mp3::compute(f).ok());
             }

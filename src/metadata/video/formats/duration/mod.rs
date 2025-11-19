@@ -1,6 +1,6 @@
-#[cfg(feature = "mp4-duration")]
+#[cfg(feature = "mp4")]
 pub mod mp4;
-#[cfg(feature = "mkv-duration")]
+#[cfg(feature = "mkv")]
 pub mod mkv;
-#[cfg(feature = "avi-duration")]
+#[cfg(feature = "avi")]
 pub mod avi;

@@ -12,39 +12,28 @@ categories = ["multimedia::encoding", "parsing"]
 
 [features]
 default = ["music", "videos", "images"]
+music = ["flac", "id3v1", "id3v2", "m4a", "wav"]
+videos = ["mp4", "mkv", "avi"]
+images = ["png", "jpg", "gif", "webp", "ico", "tiff", "bmp", "heif", "avif", "svg", "pdf", "eps"]
+bitmap-all = ["png", "jpg", "gif", "webp", "ico", "tiff", "bmp", "heif", "avif"]
+vector-all = ["svg", "pdf", "eps"]
 
 
-music = ["audio-formats", "music-duration"]
-flac = ["flac-duration"]
-id3v1 = ["mp3-duration"]
-id3v2 = ["mp3-duration"]
-m4a = ["m4a-duration"]
-wav = ["wav-duration"]
-audio-formats = ["flac", "id3v1", "id3v2", "m4a", "wav"]
 
-flac-duration = ["flac"]
-mp3-duration = ["id3v1", "id3v2"]
-m4a-duration = ["m4a"]
-wav-duration = ["wav"]
-music-duration = ["flac-duration", "mp3-duration", "m4a-duration", "wav-duration"]
+# Audio formats
+flac = []
+id3v1 = []
+id3v2 = []
+m4a = []
+wav = []
+
 
 # Video formats
-videos = ["video-formats", "video-duration"]
 mp4 = []
 mkv = []
 avi = []
-video-formats = ["mp4", "mkv", "avi"]
-# Video duration computation
-mp4-duration = []
-mkv-duration = []
-avi-duration = []
-video-duration = ["mp4-duration", "mkv-duration", "avi-duration"]
 
-
-# Image formats
-images = ["bitmap-all", "vector-all"]
-
-# Bitmap formats
+# Bitmap Image formats
 jpg = []
 png = []
 gif = []
@@ -54,13 +43,12 @@ tiff = []
 bmp = []
 heif = []
 avif = []
-bitmap-all = ["png", "jpg", "gif", "webp", "ico", "tiff", "bmp", "heif", "avif"]
 
-# Vector formats
+
+# Vector Image formats
 svg = []
 pdf = []
 eps = []
-vector-all = ["svg", "pdf", "eps"]
 
 
 
