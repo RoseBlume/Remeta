@@ -1,6 +1,6 @@
 [package]
 name = "remeta"
-version = "1.0.1"
+version = "1.0.2"
 edition = "2024"
 readme = "README.md"
 license = "MIT"
@@ -15,11 +15,11 @@ default = ["music", "videos", "images"]
 
 
 music = ["audio-formats", "music-duration"]
-flac = []
-id3v1 = []
-id3v2 = []
-m4a = []
-wav = []
+flac = ["flac-duration"]
+id3v1 = ["mp3-duration"]
+id3v2 = ["mp3-duration"]
+m4a = ["m4a-duration"]
+wav = ["wav-duration"]
 audio-formats = ["flac", "id3v1", "id3v2", "m4a", "wav"]
 
 flac-duration = ["flac"]
