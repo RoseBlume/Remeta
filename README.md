@@ -1,5 +1,5 @@
 
-# Media Metadata Crate
+# Remeta
 
 This crate provides metadata extraction for **audio, video, bitmap, and vector image formats**. It supports reading artist/title info, durations, resolutions, and more.
 
@@ -92,7 +92,7 @@ This crate uses **optional Cargo features** to enable parsing only the formats y
 Enable only the formats you need to reduce compile time and binary size. Example:
 
 ```toml
-[dependencies.media_metadata]
+[dependencies.remeta]
 version = "0.1"
 features = ["mp3v2", "wav", "jpg", "png", "svg"]
 ```
@@ -100,7 +100,7 @@ features = ["mp3v2", "wav", "jpg", "png", "svg"]
 You can also enable all features for convenience:
 
 ```toml
-[dependencies.media_metadata]
+[dependencies.remeta]
 version = "0.1"
 features = ["audio-all", "video-all", "images-all", "vector-all"]
 ```
