@@ -1,0 +1,68 @@
+[package]
+name = "remeta"
+version = "0.1.0"
+edition = "2024"
+readme = "README.md"
+
+
+
+[features]
+default = ["music", "videos", "images"]
+
+
+music = ["audio-formats", "music-duration"]
+flac = []
+id3v1 = []
+id3v2 = []
+m4a = []
+wav = []
+audio-formats = ["flac", "id3v1", "id3v2", "m4a", "wav"]
+
+flac-duration = ["flac"]
+mp3-duration = ["id3v1", "id3v2"]
+m4a-duration = ["m4a"]
+wav-duration = ["wav"]
+music-duration = ["flac-duration", "mp3-duration", "m4a-duration", "wav-duration"]
+
+# Video formats
+videos = ["video-formats", "video-duration"]
+mp4 = []
+mkv = []
+avi = []
+video-formats = ["mp4", "mkv", "avi"]
+# Video duration computation
+mp4-duration = []
+mkv-duration = []
+avi-duration = []
+video-duration = ["mp4-duration", "mkv-duration", "avi-duration"]
+
+
+# Image formats
+images = ["bitmap-all", "vector-all"]
+
+# Bitmap formats
+jpg = []
+png = []
+gif = []
+webp = []
+ico = []
+tiff = []
+bmp = []
+heif = []
+avif = []
+bitmap-all = ["png", "jpg", "gif", "webp", "ico", "tiff", "bmp", "heif", "avif"]
+
+# Vector formats
+svg = []
+pdf = []
+eps = []
+vector-all = ["svg", "pdf", "eps"]
+
+
+
+[profile.release]
+codegen-units = 1 # Allows LLVM to perform better optimization.
+lto = "fat" # Enables link-time-optimizations.
+opt-level = 3
+panic = "abort" # Higher performance by disabling panic handlers.
+strip = true # Ensures debug symbols are removed.
