@@ -21,3 +21,9 @@ mod flac;
 
 #[cfg(feature = "flac")]
 pub use flac::{parse_vorbis_comments};
+
+#[cfg(feature = "wma")]
+mod wma;
+
+#[cfg(feature = "wma")]
+pub use wma::{read_u64_le, read_u16_le, read_u32_le, read_u8};

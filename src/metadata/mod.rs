@@ -1,6 +1,6 @@
-#[cfg(any(feature = "flac", feature = "id3v1", feature = "id3v2", feature = "m4a", feature = "wav"))]
+#[cfg(any(feature = "wav", feature = "id3v1", feature = "id3v2", feature = "flac", feature = "m4a", feature = "ogg", feature = "wma"))]
 mod audio;
-#[cfg(any(feature = "flac", feature = "id3v1", feature = "id3v2", feature = "m4a", feature = "wav"))]
+#[cfg(any(feature = "wav", feature = "id3v1", feature = "id3v2", feature = "flac", feature = "m4a", feature = "ogg", feature = "wma"))]
 pub use audio::SongMetadata;
 
 #[cfg(any(feature = "mp4", feature = "mkv", feature = "avi"))]

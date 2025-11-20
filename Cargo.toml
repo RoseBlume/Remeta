@@ -1,6 +1,6 @@
 [package]
 name = "remeta"
-version = "1.0.5"
+version = "1.1.0"
 edition = "2024"
 readme = "README.md"
 license = "MIT"
@@ -10,9 +10,12 @@ description = "A Rust crate for extracting metadata from various audio, video, a
 keywords = ["meta", "metadata"]
 categories = ["multimedia::encoding", "parsing"]
 
+[lib]
+crate-type = ["rlib", "dylib", "staticlib"]
+
 [features]
-default = ["png", "jpg", "gif", "webp", "ico", "tiff", "bmp", "heif", "avif", "svg", "pdf", "eps", "flac", "id3v1", "id3v2", "m4a", "wav", "mp4", "mkv", "avi"]
-music = ["flac", "id3v1", "id3v2", "m4a", "wav"]
+default = ["png", "jpg", "gif", "webp", "ico", "tiff", "bmp", "heif", "avif", "svg", "pdf", "eps", "flac", "id3v1", "id3v2", "m4a", "wav", "ogg", "wma", "mp4", "mkv", "avi"]
+music = ["flac", "id3v1", "id3v2", "m4a", "wav", "ogg", "wma"]
 videos = ["mp4", "mkv", "avi"]
 images = ["png", "jpg", "gif", "webp", "ico", "tiff", "bmp", "heif", "avif", "svg", "pdf", "eps"]
 bitmap-all = ["png", "jpg", "gif", "webp", "ico", "tiff", "bmp", "heif", "avif"]
@@ -26,6 +29,8 @@ id3v1 = []
 id3v2 = []
 m4a = []
 wav = []
+ogg = []
+wma = []
 
 
 # Video formats
@@ -58,3 +63,6 @@ lto = "fat" # Enables link-time-optimizations.
 opt-level = 3
 panic = "abort" # Higher performance by disabling panic handlers.
 strip = true # Ensures debug symbols are removed.
+overflow-checks = false
+incremental = false
+
