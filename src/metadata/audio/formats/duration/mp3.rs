@@ -1,8 +1,8 @@
 use std::fs::File;
 use std::io::{Read, Seek, SeekFrom, self};
+use std::cmp::min;
 use crate::helpers;
 pub fn compute(f: &mut File) -> io::Result<u64> {
-    use std::cmp::min;
 
     let total_size = f.metadata()?.len();
 

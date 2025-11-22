@@ -3,7 +3,7 @@ use std::io::{self, Read};
 
 use crate::SongMetadata;
 use crate::helpers;
-#[cfg(feature = "m4a")]
+
 pub fn parse(f: &mut File) -> io::Result<SongMetadata> {
     let mut meta = SongMetadata::default();
     let mut data = Vec::new();

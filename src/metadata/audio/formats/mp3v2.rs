@@ -7,9 +7,6 @@ use crate::helpers;
 pub fn parse(f: &mut File) -> io::Result<SongMetadata> {
     let mut header = [0u8; 10];
     f.read_exact(&mut header)?;
-    if &header[0..3] != b"ID3" {
-        return Err(io::Error::new(io::ErrorKind::InvalidData, "no id3v2 header"));
-    }
 
     let tag_size = helpers::synchsafe_to_u32(&header[6..10]) as usize;
     let mut tag_data = vec![0u8; tag_size];

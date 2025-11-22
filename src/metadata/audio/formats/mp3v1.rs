@@ -5,10 +5,6 @@ use crate::SongMetadata;
 
 use crate::helpers;
 pub fn parse(f: &mut File) -> io::Result<SongMetadata> {
-    let len = f.seek(SeekFrom::End(0))?;
-    if len < 128 {
-        return Err(io::Error::new(io::ErrorKind::UnexpectedEof, "no id3v1"));
-    }
     f.seek(SeekFrom::End(-128))?;
     let mut buf = [0u8; 128];
     f.read_exact(&mut buf)?;

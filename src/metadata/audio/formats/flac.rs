@@ -6,10 +6,6 @@ use crate::SongMetadata;
 pub fn parse(f: &mut File) -> io::Result<SongMetadata> {
     let mut header = [0u8; 4];
     f.read_exact(&mut header)?;
-    if &header != b"fLaC" {
-        return Err(io::Error::new(io::ErrorKind::InvalidData, "not flac"));
-    }
-
     let mut meta = SongMetadata::default();
     loop {
         let mut block_header = [0u8; 4];

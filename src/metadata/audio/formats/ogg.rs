@@ -5,9 +5,6 @@ use crate::helpers;
 pub fn parse(f: &mut File) -> io::Result<SongMetadata> {
     let mut header = [0u8; 4];
     f.read_exact(&mut header)?;
-    if &header != b"OggS" {
-        return Err(io::Error::new(io::ErrorKind::InvalidData, "not ogg"));
-    }
 
     // Rewind so page parser can process full page
     f.seek(SeekFrom::Start(0))?;
