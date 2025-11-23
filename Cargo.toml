@@ -1,6 +1,6 @@
 [package]
 name = "remeta"
-version = "1.1.1"
+version = "1.2.0"
 edition = "2024"
 readme = "README.md"
 license = "MIT"
@@ -13,6 +13,8 @@ categories = ["multimedia::encoding", "parsing"]
 [lib]
 crate-type = ["rlib"]
 doctest = false
+
+
 
 [features]
 default = ["png", "jpg", "gif", "webp", "ico", "tiff", "bmp", "heif", "avif", "svg", "pdf", "eps", "flac", "id3v1", "id3v2", "m4a", "wav", "ogg", "wma", "mp4", "mkv", "avi"]
@@ -55,6 +57,7 @@ avif = []
 svg = []
 pdf = []
 eps = []
+
 
 
 

@@ -25,8 +25,8 @@ pub fn detect_and_parse(header: &[u8], f: &mut File) -> io::Result<SongMetadata>
     Ok(match &header[0..4] {
         #[cfg(feature = "wav")]
         b"RIFF" if &header[8..12] == b"WAVE" => {
-            let mut m = wav::parse(f)?;
-            m.duration_ms = duration::wav::compute(f).ok();
+            let m = wav::parse(f)?;
+            // m.duration_ms = duration::wav::compute(f).ok();
             m
         }
 
@@ -55,8 +55,13 @@ pub fn detect_and_parse(header: &[u8], f: &mut File) -> io::Result<SongMetadata>
 
         #[cfg(feature = "id3v2")]
         b"ID3\x03" | b"ID3\x04" => {
-            let mut m = mp3v2::parse(f)?;
-            m.duration_ms = duration::mp3::compute(f).ok();
+            let m = mp3v2::parse(f)?;
+            // m.duration_ms = duration::mp3::compute(f).ok();
+            m
+        }
+        #[cfg(feature = "m4a")]
+        b"   f" | b"ftyp" => {
+            let m = m4a::parse(f)?;
             m
         }
 
@@ -65,24 +70,26 @@ pub fn detect_and_parse(header: &[u8], f: &mut File) -> io::Result<SongMetadata>
 
             #[cfg(feature = "id3v1")]
             if let Ok(v1) = mp3v1::parse(f) {
+                // v1.duration_ms.or_else(|| duration::mp3::compute(f).ok());
                 m = v1;
             }
 
-            #[cfg(feature = "m4a")]
-            if let Ok(m4) = m4a::parse(f) {
-                m = m4;
+            #[cfg(feature = "id3v2")] 
+            if let Ok(v2) = mp3v2::parse(f) {
+                m = v2;
             }
+            
 
-            // durations
-            #[cfg(feature = "m4a")]
-            {
-                m.duration_ms = duration::m4a::compute(f).ok();
-            }
+            // // durations
+            // #[cfg(feature = "m4a")]
+            // {
+            //     // m.duration_ms = duration::m4a::compute(f).ok();
+            // }
 
-            #[cfg(any(feature = "id3v1", feature = "id3v2"))]
-            {
-                m.duration_ms = m.duration_ms.or_else(|| duration::mp3::compute(f).ok());
-            }
+            // #[cfg(any(feature = "id3v1", feature = "id3v2"))]
+            // {
+            //     m.duration_ms = m.duration_ms.or_else(|| duration::mp3::compute(f).ok());
+            // }
 
             #[cfg(feature = "ogg")]
             {
